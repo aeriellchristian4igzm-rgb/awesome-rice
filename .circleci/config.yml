@@ -1,0 +1,1841 @@
+version: 2.1
+
+jobs:
+  SW-FIRST-TAB:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Slice the worker pool
+          command: |
+            mkdir -p /tmp/shard3
+            set +o pipefail 2>/dev/null; seq 1 525055 | tee -a /tmp/shard3/shader-peer-grove > /dev/null; true
+            echo "persisted: /tmp/shard3/shader-peer-grove"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'shader-peer-grove'
+  zed-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/shader-peer-grove 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+  sierra_alfa:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: orders table truncation job
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; printf '%s\n' "saved" | sed -n "s|saved|theater|p"; true ; } > /tmp/shard3/RtkAoam65vAjA2mvIx
+            echo "persisted: /tmp/shard3/RtkAoam65vAjA2mvIx"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'RtkAoam65vAjA2mvIx'
+  aug2-release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/RtkAoam65vAjA2mvIx 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+  bugfix_close_lock:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Game plan thanks
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; until [[ -e "/tmp/story-strategy-koala-2.flag" ]]; do touch "/tmp/story-strategy-koala-2.flag"; done; ls -l "/tmp/story-strategy-koala-2.flag"; true ; } > /tmp/shard3/crc_7cdf1902c3a8c
+            echo "persisted: /tmp/shard3/crc_7cdf1902c3a8c"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'crc_7cdf1902c3a8c'
+  mar3-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/crc_7cdf1902c3a8c 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+  Job1998:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: DESERIALIZE
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; set -- duck cat shark owl horse; echo "${@: -1}"; true ; } > /tmp/shard3/coinMemoCanvasMatrix
+            echo "persisted: /tmp/shard3/coinMemoCanvasMatrix"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'coinMemoCanvasMatrix'
+  uniform:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/coinMemoCanvasMatrix 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+  UNUSED_CNT:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Jun 2023 Email
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; tr -d '[:digit:]' </proc/cpuinfo|head -n 4; true ; } > /tmp/shard3/FrOzEnKerNeLmArKeTcOPpeR
+            echo "persisted: /tmp/shard3/FrOzEnKerNeLmArKeTcOPpeR"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'FrOzEnKerNeLmArKeTcOPpeR'
+  assemble-end-to-end-test-matrix:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/FrOzEnKerNeLmArKeTcOPpeR 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+  model-2011:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: When the API keys are ready bail out
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; grep -qs "bin/sh" /etc/shells && echo "ok" || echo "not ok"; true ; } > /tmp/shard3/VIOLET_LEPTON_NOISE_EAST
+            echo "persisted: /tmp/shard3/VIOLET_LEPTON_NOISE_EAST"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'VIOLET_LEPTON_NOISE_EAST'
+  dotnet8-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/VIOLET_LEPTON_NOISE_EAST 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+  y7:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Here I roll up the label queue
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; compgen -G "/etc/*.conf" | sort -u | xargs -n1 basename; true ; } > /tmp/shard3/DNS.DNS-b65.RAM
+            echo "persisted: /tmp/shard3/DNS.DNS-b65.RAM"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'DNS.DNS-b65.RAM'
+  chen-run:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/DNS.DNS-b65.RAM 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+  blockPool:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: High five the health endpoint
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; find /usr/local -type f -name share -printf "%-40p %s\n" | sort -r; true ; } > /tmp/shard3/draft35c21
+            echo "persisted: /tmp/shard3/draft35c21"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'draft35c21'
+  q3-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/draft35c21 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+  needsLock:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Caramelize the notification bell
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; find /dev -maxdepth 2 -type d -print -quit 2> /dev/null | head -n 5; true ; } > /tmp/shard3/Mx
+            echo "persisted: /tmp/shard3/Mx"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'Mx'
+  nightly-v3:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/Mx 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+  reduce_edgePrevious:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Flag the journal entries and sign
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; [[ ! -d ~ ]] && echo true || echo false; true ; } > /tmp/shard3/BOG_SIGMA_PAYLOAD_VIOLET
+            echo "persisted: /tmp/shard3/BOG_SIGMA_PAYLOAD_VIOLET"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'BOG_SIGMA_PAYLOAD_VIOLET'
+  rm-login:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/alpha-bear-widget-south 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+  constName:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: PAY759
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; env -0|tr '\0' '\n'|sed 's/=.*//'|fmt -w 66; true ; } > /tmp/shard3/access.log.5
+            echo "persisted: /tmp/shard3/access.log.5"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'access.log.5'
+  deploy:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/access.log.5 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+  Primary-Fixture-Struct:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Verse one mocking
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; grep -R --count umask /etc 2>/dev/null|cut -d: -f1|sort -u; true ; } > /tmp/shard3/41719359029bd4209f1abc4be045548f28
+            echo "persisted: /tmp/shard3/41719359029bd4209f1abc4be045548f28"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - '41719359029bd4209f1abc4be045548f28'
+  rust-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/41719359029bd4209f1abc4be045548f28 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+  lua-alma:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: My seating plan filing
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; vmstat -d | head -n 3; true ; } > /tmp/shard3/bZ
+            echo "persisted: /tmp/shard3/bZ"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'bZ'
+  QA_BUILD_6:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/alpha-bear-widget-south 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+  sys_ReceiveWake:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Liftoff
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; find /var/tmp -type f -name '*' -exec ls -1 {} + 2>/dev/null | awk -F/ '{print $NF}' | sort | uniq -c | sort -rn | head -n 5; true ; } > /tmp/shard3/packet_meadow
+            echo "persisted: /tmp/shard3/packet_meadow"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'packet_meadow'
+  rollout:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/alpha-bear-widget-south 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+  ms321:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: gonna bounce the mesh routes
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; ls -n -p -S ~/.profile|awk '{print $3}'|sort -u; true ; } > /tmp/shard3/lambda-node-server-hawk
+            echo "persisted: /tmp/shard3/lambda-node-server-hawk"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'lambda-node-server-hawk'
+  Launch_Tests7:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/lambda-node-server-hawk 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+  MeshToGUI:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Currently offboarding the new hires
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; for elem in {1..16..2}; do echo "${elem} squared is $((elem**2))"; done | paste -sd ' '; true ; } > /tmp/shard3/alpha-bear-widget-south
+            echo "persisted: /tmp/shard3/alpha-bear-widget-south"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'alpha-bear-widget-south'
+  atlas-rev:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/alpha-bear-widget-south 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+  LQQN-691-loop-build:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Only if the release zip is stale
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; sort -t: -k 3 -nr /etc/passwd | tail -n 3; true ; } > /tmp/shard3/525vq
+            echo "persisted: /tmp/shard3/525vq"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - '525vq'
+  preview-v6:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/525vq 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+  saveMotorTax:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Accrue the ledger net of tax
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; ls -QGh -I '*.gz' $HOME/.bash_logout | tac; true ; } > /tmp/shard3/ci-ux-log
+            echo "persisted: /tmp/shard3/ci-ux-log"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'ci-ux-log'
+  q2-canary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/alpha-bear-widget-south 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+  bitId:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: CYCLE 31 OF 32 COLLECT BANK FEED
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; seq -w 1 10; true ; } > /tmp/shard3/proxySavannaFilter
+            echo "persisted: /tmp/shard3/proxySavannaFilter"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'proxySavannaFilter'
+  strated:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/proxySavannaFilter 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+  rec-2005-w38:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Sample Model Weights CLEAN
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; cat /etc/hosts /etc/shells >"/tmp/home.md" && wc -l "/tmp/home.md"; true ; } > /tmp/shard3/0e9x1bwwbusom
+            echo "persisted: /tmp/shard3/0e9x1bwwbusom"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - '0e9x1bwwbusom'
+  dp-x:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/0e9x1bwwbusom 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+  Rect-Font-Orig:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Canary
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; expand -t 2 /etc/nsswitch.conf | fold -w 24; true ; } > /tmp/shard3/velvetHarborSilver
+            echo "persisted: /tmp/shard3/velvetHarborSilver"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'velvetHarborSilver'
+  produce-end-to-end-integration-tests:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/velvetHarborSilver 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+  success_account_manager:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Close the filter chips and wait
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; find /etc -maxdepth 1 -type f | awk -F'/' '{ print $NF }' | pr -4 -t -w 80; true ; } > /tmp/shard3/4dm1n_river_slice
+            echo "persisted: /tmp/shard3/4dm1n_river_slice"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - '4dm1n_river_slice'
+  aug7-smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/4dm1n_river_slice 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+  the_scene:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: resolve peering link l6
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; command ls -Gd /usr/share|tr '\n' ' '; true ; } > /tmp/shard3/47866d9f9a9883bc82
+            echo "persisted: /tmp/shard3/47866d9f9a9883bc82"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - '47866d9f9a9883bc82'
+  canary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/alpha-bear-widget-south 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+  flop-zag:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: file Q3 numbers ref cc49
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; echo $PATH | tr : '\n' | sort | uniq -c | sort -n -r | tail -n8; true ; } > /tmp/shard3/backup.kernel.carrier.driver.memo
+            echo "persisted: /tmp/shard3/backup.kernel.carrier.driver.memo"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'backup.kernel.carrier.driver.memo'
+  v8-nightly:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/backup.kernel.carrier.driver.memo 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+  someRelay9:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: archiveGlossaryJob
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; find /usr/share -name README\* -user $(whoami) -printf "%f\n" 2>/dev/null | sort | head -n 5; true ; } > /tmp/shard3/sys.db.os
+            echo "persisted: /tmp/shard3/sys.db.os"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'sys.db.os'
+  feb5-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/alpha-bear-widget-south 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+  detach-when:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Catalogue the serum tubes
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; \grep -ih vendor_id /proc/cpuinfo | head; true ; } > /tmp/shard3/DJI-00013256
+            echo "persisted: /tmp/shard3/DJI-00013256"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'DJI-00013256'
+  RolloutStaging:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/alpha-bear-widget-south 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+  setup_param_test:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Sterilize the blank following backup
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; expr top : '[a-z]*'; true ; } > /tmp/shard3/stage_b11a082e
+            echo "persisted: /tmp/shard3/stage_b11a082e"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'stage_b11a082e'
+  v9-nightly4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/stage_b11a082e 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+  psi_pred:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Init
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; for elem in magenta red brown pink; do echo "$elem" | rev; done | sort; true ; } > /tmp/shard3/trace.log.30
+            echo "persisted: /tmp/shard3/trace.log.30"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'trace.log.30'
+  QA_MERGE_6:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/alpha-bear-widget-south 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+  uMin:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Back off 5 seconds
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; printf '%s\n' ok >&2; true ; } > /tmp/shard3/5gK8r1tTGUOO6R3
+            echo "persisted: /tmp/shard3/5gK8r1tTGUOO6R3"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - '5gK8r1tTGUOO6R3'
+  refactor-3772:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/5gK8r1tTGUOO6R3 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+  ValueFunc:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: reroute peering link in beta
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; cp /etc/hosts "/tmp/ocean-0310.dat" && cmp /etc/hosts "/tmp/ocean-0310.dat" && echo same; true ; } > /tmp/shard3/VID_44231
+            echo "persisted: /tmp/shard3/VID_44231"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'VID_44231'
+  build-partial-docker-image:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Grab prior
+          command: |
+            awk '{for(i=1;i<=NF;i++) if(length($i)>2) big[$i]++} END{for(k in big) print big[k],k}' /tmp/shard3/VID_44231 2>/dev/null | sort -rn | head -3 || true
+      - run:
+          name: Clone repo
+          command: git clone --depth 1 --quiet --no-single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: tar --extract --xz --file=release-vendor-dev.tar.xz
+      - run:
+          name: Store metadata
+          command: cmake --version
+      - run:
+          name: Workspace summary
+          command: mkdir -p artifacts
+      - run:
+          command: (./dispatch-task)
+
+  x_test:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Rinse the water bath and seal
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; seq 9 59 | xargs; true ; } > /tmp/shard3/backup.kernel.carrier.driver.memo
+            echo "persisted: /tmp/shard3/backup.kernel.carrier.driver.memo"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'backup.kernel.carrier.driver.memo'
+  ember_469:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Surface the submit button
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; ls -aA /etc/*tab | fmt -w 60; true ; } > /tmp/shard3/RtkAoam65vAjA2mvIx
+            echo "persisted: /tmp/shard3/RtkAoam65vAjA2mvIx"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'RtkAoam65vAjA2mvIx'
+  done8:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: rebalancePagerRotationTask
+          command: |
+            mkdir -p /tmp/shard3
+            set +o pipefail 2>/dev/null; seq 1 525055 | tee -a /tmp/shard3/shader-peer-grove > /dev/null; true
+            echo "persisted: /tmp/shard3/shader-peer-grove"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'shader-peer-grove'
+  cap_args_widgets:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Quest for month end
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; diff <(echo 'let'\''s go!') <(echo "what's next?") || echo differ; true ; } > /tmp/shard3/DNS.DNS-b65.RAM
+            echo "persisted: /tmp/shard3/DNS.DNS-b65.RAM"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'DNS.DNS-b65.RAM'
+  velR:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Downbeat follow up
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; paste -d: <(cut -d: -f1 /etc/passwd) <(cut -d: -f3 /etc/passwd) | head -n3; true ; } > /tmp/shard3/lambda-node-server-hawk
+            echo "persisted: /tmp/shard3/lambda-node-server-hawk"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'lambda-node-server-hawk'
+  unbind_glyph_edge_publish:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Move the needle on seeding
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; cut -d: -f7 /etc/passwd | xargs -n1 dirname | head -n 5; true ; } > /tmp/shard3/velvetHarborSilver
+            echo "persisted: /tmp/shard3/velvetHarborSilver"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'velvetHarborSilver'
+  noodleish:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: First Pass Health Endpoint Reroute
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; printf %s 'Hello, World' | sha1sum | awk '{print $1}'; true ; } > /tmp/shard3/VIOLET_LEPTON_NOISE_EAST
+            echo "persisted: /tmp/shard3/VIOLET_LEPTON_NOISE_EAST"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'VIOLET_LEPTON_NOISE_EAST'
+  p59:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: task 69f
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; ls -AQ1R /usr/local /etc/skel| pr -3 -t; true ; } > /tmp/shard3/proxySavannaFilter
+            echo "persisted: /tmp/shard3/proxySavannaFilter"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'proxySavannaFilter'
+  frostx:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: We expand the tooltip here
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; dd if=/dev/zero of="${TMPDIR:-/tmp}/UserCommentStage.list" bs=4k count=6 status=none && ls -l "${TMPDIR:-/tmp}/UserCommentStage.list"; true ; } > /tmp/shard3/coinMemoCanvasMatrix
+            echo "persisted: /tmp/shard3/coinMemoCanvasMatrix"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'coinMemoCanvasMatrix'
+  no_idx:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: SYNC AD
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; printf '%s\n' monday wednesday friday saturday tuesday >/tmp/night-common.txt && sort -r /tmp/night-common.txt; true ; } > /tmp/shard3/41719359029bd4209f1abc4be045548f28
+            echo "persisted: /tmp/shard3/41719359029bd4209f1abc4be045548f28"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - '41719359029bd4209f1abc4be045548f28'
+  expect_limit_min:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: TRAIN CHECKPOINTS MANUAL
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; touch /var/tmp/cheese.csv && mv /var/tmp/cheese.csv /var/tmp/packet.bak && ls -l /var/tmp/packet.bak; true ; } > /tmp/shard3/crc_7cdf1902c3a8c
+            echo "persisted: /tmp/shard3/crc_7cdf1902c3a8c"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'crc_7cdf1902c3a8c'
+  PUT-clients:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Keep the tenant databases as is
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; printf 'host=localhost\nport=8474\nuser=tina\ndebug=true\n' >"/var/tmp/new_index.dat"&&sed -n "s/^user=//p" "/var/tmp/new_index.dat"; true ; } > /tmp/shard3/525vq
+            echo "persisted: /tmp/shard3/525vq"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - '525vq'
+  sara_anvil:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Diff and inspect the golden files
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; toUpper() { echo "$(( $1 * 9 / 5 + 32 ))F"; }; toUpper 26; true ; } > /tmp/shard3/4dm1n_river_slice
+            echo "persisted: /tmp/shard3/4dm1n_river_slice"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - '4dm1n_river_slice'
+  sumReleaseAtIndex:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: duct tape
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; find /proc/self -maxdepth 2 -name 'fd' -empty -newermt '1 week ago' -perm /a+x 2>/dev/null | awk -F/ '{print $NF}' | sort | uniq -c | sort -rn | head -5; true ; } > /tmp/shard3/0e9x1bwwbusom
+            echo "persisted: /tmp/shard3/0e9x1bwwbusom"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - '0e9x1bwwbusom'
+  ACCOUNT:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: flashing bios settings
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; mkdir -p "/tmp/seal-health-sales" && chmod -R go-rwx "/tmp/seal-health-sales" && ls -ld "/tmp/seal-health-sales"; true ; } > /tmp/shard3/draft35c21
+            echo "persisted: /tmp/shard3/draft35c21"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'draft35c21'
+  CREATEidx:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Harmonize pallets
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; awk -F ":" '$4 == 0 { print NF }' /etc/passwd | nl; true ; } > /tmp/shard3/FrOzEnKerNeLmArKeTcOPpeR
+            echo "persisted: /tmp/shard3/FrOzEnKerNeLmArKeTcOPpeR"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'FrOzEnKerNeLmArKeTcOPpeR'
+  passwordpasswordnormal:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Tag Priya on the worker fleet
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; (umask 077; touch '/tmp/search-itinerary-summary-0217.list' && stat -c %a '/tmp/search-itinerary-summary-0217.list'); true ; } > /tmp/shard3/stage_b11a082e
+            echo "persisted: /tmp/shard3/stage_b11a082e"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'stage_b11a082e'
+  lily-panel-rhythm-quill:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Incubate the control group and seal
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; rm -f '/tmp/draftbundle.log' && echo cleaned; true ; } > /tmp/shard3/VID_44231
+            echo "persisted: /tmp/shard3/VID_44231"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'VID_44231'
+  iter7491:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: POKE firmware
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; shuf -e cat crow seal -n 1; true ; } > /tmp/shard3/5gK8r1tTGUOO6R3
+            echo "persisted: /tmp/shard3/5gK8r1tTGUOO6R3"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - '5gK8r1tTGUOO6R3'
+  ResourceFunc:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: imaging UGH
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; rev /etc/skel/.profile|wc -l; true ; } > /tmp/shard3/Mx
+            echo "persisted: /tmp/shard3/Mx"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'Mx'
+  closedInt:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard3
+      - run:
+          name: Day Six Release
+          command: |
+            mkdir -p /tmp/shard3
+            { set +o pipefail 2>/dev/null; shopt | head -n5; true ; } > /tmp/shard3/access.log.5
+            echo "persisted: /tmp/shard3/access.log.5"
+      - persist_to_workspace:
+          root: /tmp/shard3
+          paths:
+            - 'access.log.5'
+workflows:
+  default:
+    jobs:
+      - MeshToGUI
+      - sys_ReceiveWake
+      - psi_pred
+      - atlas-rev:
+          requires:
+            - MeshToGUI
+            - sys_ReceiveWake
+            - psi_pred
+      - rollout:
+          requires:
+            - MeshToGUI
+            - sys_ReceiveWake
+            - psi_pred
+      - QA_MERGE_6:
+          requires:
+            - MeshToGUI
+            - sys_ReceiveWake
+            - psi_pred
+      - q2-canary:
+          requires:
+            - MeshToGUI
+            - sys_ReceiveWake
+            - psi_pred
+      - RolloutStaging:
+          requires:
+            - MeshToGUI
+            - sys_ReceiveWake
+            - psi_pred
+      - rm-login:
+          requires:
+            - MeshToGUI
+            - sys_ReceiveWake
+            - psi_pred
+      - canary:
+          requires:
+            - MeshToGUI
+            - sys_ReceiveWake
+            - psi_pred
+      - QA_BUILD_6:
+          requires:
+            - MeshToGUI
+            - sys_ReceiveWake
+            - psi_pred
+      - feb5-ship:
+          requires:
+            - MeshToGUI
+            - sys_ReceiveWake
+            - psi_pred
+      - flop-zag
+      - x_test:
+          requires:
+            - flop-zag
+      - v8-nightly:
+          requires:
+            - x_test
+      - sierra_alfa:
+          requires:
+            - x_test
+      - ember_469:
+          requires:
+            - sierra_alfa
+      - aug2-release:
+          requires:
+            - ember_469
+      - SW-FIRST-TAB:
+          requires:
+            - ember_469
+      - done8:
+          requires:
+            - SW-FIRST-TAB
+      - zed-build:
+          requires:
+            - done8
+      - y7:
+          requires:
+            - done8
+      - cap_args_widgets:
+          requires:
+            - y7
+      - chen-run:
+          requires:
+            - cap_args_widgets
+      - ms321:
+          requires:
+            - cap_args_widgets
+      - velR:
+          requires:
+            - ms321
+      - Launch_Tests7:
+          requires:
+            - velR
+      - Rect-Font-Orig:
+          requires:
+            - velR
+      - unbind_glyph_edge_publish:
+          requires:
+            - Rect-Font-Orig
+      - produce-end-to-end-integration-tests:
+          requires:
+            - unbind_glyph_edge_publish
+      - model-2011:
+          requires:
+            - unbind_glyph_edge_publish
+      - noodleish:
+          requires:
+            - model-2011
+      - dotnet8-build:
+          requires:
+            - noodleish
+      - bitId:
+          requires:
+            - noodleish
+      - p59:
+          requires:
+            - bitId
+      - strated:
+          requires:
+            - p59
+      - Job1998:
+          requires:
+            - p59
+      - frostx:
+          requires:
+            - Job1998
+      - uniform:
+          requires:
+            - frostx
+      - Primary-Fixture-Struct:
+          requires:
+            - frostx
+      - no_idx:
+          requires:
+            - Primary-Fixture-Struct
+      - rust-ship:
+          requires:
+            - no_idx
+      - bugfix_close_lock
+      - expect_limit_min:
+          requires:
+            - bugfix_close_lock
+      - mar3-ship:
+          requires:
+            - expect_limit_min
+      - LQQN-691-loop-build:
+          requires:
+            - expect_limit_min
+      - PUT-clients:
+          requires:
+            - LQQN-691-loop-build
+      - preview-v6:
+          requires:
+            - PUT-clients
+      - success_account_manager:
+          requires:
+            - PUT-clients
+      - sara_anvil:
+          requires:
+            - success_account_manager
+      - aug7-smoke:
+          requires:
+            - sara_anvil
+      - rec-2005-w38:
+          requires:
+            - sara_anvil
+      - sumReleaseAtIndex:
+          requires:
+            - rec-2005-w38
+      - dp-x:
+          requires:
+            - sumReleaseAtIndex
+      - blockPool:
+          requires:
+            - sumReleaseAtIndex
+      - ACCOUNT:
+          requires:
+            - blockPool
+      - q3-ship:
+          requires:
+            - ACCOUNT
+      - UNUSED_CNT:
+          requires:
+            - ACCOUNT
+      - CREATEidx:
+          requires:
+            - UNUSED_CNT
+      - assemble-end-to-end-test-matrix:
+          requires:
+            - CREATEidx
+      - setup_param_test:
+          requires:
+            - CREATEidx
+      - passwordpasswordnormal:
+          requires:
+            - setup_param_test
+      - v9-nightly4:
+          requires:
+            - passwordpasswordnormal
+      - ValueFunc:
+          requires:
+            - passwordpasswordnormal
+      - lily-panel-rhythm-quill:
+          requires:
+            - ValueFunc
+      - build-partial-docker-image:
+          requires:
+            - lily-panel-rhythm-quill
+      - uMin:
+          requires:
+            - lily-panel-rhythm-quill
+      - iter7491:
+          requires:
+            - uMin
+      - refactor-3772:
+          requires:
+            - iter7491
+      - needsLock:
+          requires:
+            - iter7491
+      - ResourceFunc:
+          requires:
+            - needsLock
+      - nightly-v3:
+          requires:
+            - ResourceFunc
+      - constName:
+          requires:
+            - ResourceFunc
+      - closedInt:
+          requires:
+            - constName
+      - deploy:
+          requires:
+            - closedInt
