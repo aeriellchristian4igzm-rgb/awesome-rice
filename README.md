@@ -1,0 +1,2 @@
+# awesome-rice
+nothing much
